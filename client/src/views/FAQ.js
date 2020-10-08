@@ -77,12 +77,24 @@ export const FAQ = () => {
   }
 
   const renderFaqs = () => {
-    return faqs.map(({ answer, question }, i) => <div key={i} className="faqs flex flex--align-center">
+    return faqs.map(({ _id, answer, question }, i) => <div key={i} className="faqs flex flex--align-center">
       <FAQRow answer={answer} question={question} />
       {user
         ? <div className="faq-btns flex flex--column flex--align-center flex--justify-center">
-          <button className="btn outline-btn primary-fill small-btn fixed-btn">Edit</button>
-          <button className="btn delete-btn small-btn fixed-btn">Delete</button>
+          <button
+            className="btn outline-btn primary-fill small-btn fixed-btn"
+            data-id={_id}
+            onClick={(e) => handleEditClick(e)}
+          >
+            Edit
+          </button>
+          <button
+            className="btn delete-btn small-btn fixed-btn"
+            data-id={_id}
+            onClick={(e) => handleDeleteClick(e)}
+          >
+            Delete
+          </button>
         </div>
         : null}
     </div>)
