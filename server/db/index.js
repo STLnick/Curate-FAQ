@@ -10,6 +10,15 @@ export const addUser = async (newUser) => {
   }
 }
 
+export const deleteUser = async ({ _id }) => {
+  try {
+    return await client.db('curate').collection('users')
+      .deleteOne({ _id: ObjectId(_id) });
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
 export const getUsers = async () => {
   try {
     return await client.db('curate').collection('users')

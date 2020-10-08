@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addUser, getUsers, updateUser } from '../db'
+import { addUser, deleteUser, getUsers, updateUser } from '../db'
 
 const router = Router();
 
@@ -27,6 +27,12 @@ router.patch('/:_id', async (req, res) => {
   }
 });
 
-//     router.delete('/', () => {//delete a user});
+router.delete('/', async (req, res) => {
+  try {
+    res.status(204).json(await deleteUser(req.body));
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 export default router;
