@@ -20,8 +20,6 @@ export const Login = () => {
       return acc;
     }, {})
 
-    console.log('USERINFO: ', userInfo);
-
     // Try to find in database
     const response = await userAPI.login(userInfo);
 
