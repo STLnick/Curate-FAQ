@@ -35,6 +35,20 @@ export const FAQ = () => {
     })()
   }, []);
 
+  const closeModal = (option) => {
+    switch (option) {
+      case 'add':
+        setAddModal(prevModal => ({ ...prevModal, isOpen: false }))
+        break;
+      case 'delete':
+        setDeleteModal(prevModal => ({ ...prevModal, isOpen: false }))
+        break;
+      case 'edit':
+        setEditModal(prevModal => ({ ...prevModal, isOpen: false }))
+        break;
+    }
+  }
+
   const handleAddFaqSubmit = async (e) => {
     e.preventDefault();
 
