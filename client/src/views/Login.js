@@ -18,15 +18,18 @@ export const Login = () => {
     // Get info from fields
     const userInfo = utils.createObjectFromFields(e.target.elements)
 
-    // Try to find in database
-    const response = await userAPI.login(userInfo);
-
-    // If successful, setUser and redirect to /faq else display error
-    if (response) {
-      setUser(response);
-      history.push('/faq')
-    } else {
-      setError('Email or Password is incorrect. Please try again.')
+    try {
+      // Try to find in database
+      const response = await userAPI.login(userInfo);
+      // If successful, setUser and redirect to /faq else display error
+      if (response) {
+        setUser(response);
+        history.push('/faq')
+      } else {
+        setError('Email or Password is incorrect. Please try again.');
+      }
+    } catch (err) {
+      setError(err)
     }
   }
 
