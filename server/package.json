@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Express server with webpack mongodb built with webpack. Linting included!",
   "main": "server.js",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.14.7"
+  },
   "scripts": {
     "build": "webpack",
     "start-server": "nodemon dist/main.js",
