@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { FAQRow } from '../components';
 import api from 'api';
 
 const faqAPI = api('faqs');
@@ -13,10 +14,14 @@ export const FAQ = () => {
     })()
   }, []);
 
-export const FAQ = () => {
+  const renderFaqs = () => {
+    return faqs.map(({ answer, question }) => <FAQRow answer={answer} question={question} />)
+  }
+
   return (
     <div>
-      FAQs here...
+      <h3 className="heading">FAQs</h3>
+      {renderFaqs()}
     </div>
   )
 }
