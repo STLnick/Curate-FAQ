@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 
-import { FAQRow } from '../components';
+import { AddModal, DeleteModal, EditModal, FAQRow } from '../components';
 import { UserContext } from 'UserContext';
 import api from 'api';
 
@@ -202,26 +202,7 @@ export const FAQ = () => {
           <button className="btn cta-btn" type="submit">Confirm Changes</button>
         </form>
       </Modal>
-      <Modal
-        isOpen={deleteModal.isOpen}
-        onRequestClose={() => setDeleteModal(prevModal => ({ ...prevModal, isOpen: false }))}
-        style={{
-          content: {
-            height: '275px',
-            left: '50%',
-            top: '25%',
-            transform: 'translate(-50%, -50%)',
-            width: '200px',
-          }
-        }}
-      >
-        <div className="modal-form flex flex--column flex--align-center flex--justify-around">
-          {deleteModal.error ? <p className="error">{deleteModal.error}</p> : null}
-          <h2 className="md-text">Are you sure you want to delete this FAQ?</h2>
-          <button className="btn outline-btn primary-fill" onClick={() => setDeleteModal(prevModal => ({ ...prevModal, isOpen: false }))}>Cancel</button>
-          <button className="btn delete-btn" onClick={handleDeleteConfirm}>Delete</button>
-        </div>
-      </Modal>
+      <DeleteModal modal={deleteModal} closeModal={closeModal} handleConfirm={handleDeleteConfirm} />
       <div>
         {renderFaqs()}
       </div>

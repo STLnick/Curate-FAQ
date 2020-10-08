@@ -1,3 +1,6 @@
+export { AddModal } from './AddModal'
+export { EditModal } from './EditModal'
+export { DeleteModal } from './DeleteModal'
 export { FAQRow } from './FAQRow'
 export { Footer } from './Footer'
 export { Header } from './Header'
