@@ -8,6 +8,7 @@
     "npm": "6.14.7"
   },
   "scripts": {
+    "start": "node server.js",
     "build": "webpack",
     "start-server": "nodemon dist/main.js",
     "watch": "webpack --watch"
