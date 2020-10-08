@@ -14,6 +14,11 @@ export const FAQ = () => {
     isOpen: false,
     error: ''
   })
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    currentIdToDelete: null,
+    error: ''
+  })
   const [editModal, setEditModal] = useState({
     isOpen: false,
     currentItemToEdit: {},
@@ -53,10 +58,21 @@ export const FAQ = () => {
     }
   }
 
+  const handleDeleteClick = (e) => {
+    const targetId = e.target.closest('button').dataset.id;
+    setDeleteModal(prevModal => ({ currentIdToDelete: targetId, isOpen: true }));
+  }
+
+  const handleDeleteConfirm = async () => {
+    try {
+      // Delete from db
+      await faqAPI.delete({ _id: deleteModal.currentIdToDelete });
+      // Remove from state
+      setFaqs(prevFaqs => prevFaqs.filter(faq => faq._id !== deleteModal.currentIdToDelete))
       // Close Modal
-      setEditModal(prevModal => ({ ...prevModal, isOpen: false }))
+      setDeleteModal(prevModal => ({ ...prevModal, error: '', isOpen: false }))
     } catch (err) {
-      setEditModal(prevModal => ({ ...prevModal, error: err }));
+      setDeleteModal(prevModal => ({ ...prevModal, error: err }))
     }
   }
 
@@ -120,6 +136,26 @@ export const FAQ = () => {
           <input className="input" id="answer" type="text" />
           <button className="btn cta-btn" type="submit">Add</button>
         </form>
+      </Modal>
+      <Modal
+        isOpen={deleteModal.isOpen}
+        onRequestClose={() => setDeleteModal(prevModal => ({ ...prevModal, isOpen: false }))}
+        style={{
+          content: {
+            height: '275px',
+            left: '50%',
+            top: '25%',
+            transform: 'translate(-50%, -50%)',
+            width: '200px',
+          }
+        }}
+      >
+        <div className="modal-form flex flex--column flex--align-center flex--justify-around">
+          {deleteModal.error ? <p className="error">{deleteModal.error}</p> : null}
+          <h2 className="md-text">Are you sure you want to delete this FAQ?</h2>
+          <button className="btn outline-btn primary-fill" onClick={() => setDeleteModal(prevModal => ({ ...prevModal, isOpen: false }))}>Cancel</button>
+          <button className="btn delete-btn" onClick={handleDeleteConfirm}>Delete</button>
+        </div>
       </Modal>
       <div>
         {renderFaqs()}
