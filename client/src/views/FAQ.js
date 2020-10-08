@@ -49,19 +49,30 @@ export const FAQ = () => {
     } catch (err) {
       setEditModal(prevModal => ({ ...prevModal, error: err }));
     }
-
-
   }
 
   const renderFaqs = () => {
-    return faqs.map(({ answer, question }, i) => <FAQRow key={i} answer={answer} question={question} />)
+    return faqs.map(({ answer, question }, i) => <div key={i} className="faqs flex flex--align-center">
+      <FAQRow answer={answer} question={question} />
+      {user
+        ? <div className="faq-btns flex flex--column flex--align-center flex--justify-center">
+          <button className="btn outline-btn primary-fill small-btn fixed-btn">Edit</button>
+          <button className="btn delete-btn small-btn fixed-btn">Delete</button>
+        </div>
+        : null}
+    </div>)
   }
 
   return (
     <>
       <h3 className="heading">FAQs</h3>
       {user
-        ? <button onClick={() => setEditModal(prevModal => ({ ...prevModal, isOpen: true }))}>Add New FAQ</button>
+        ? <button
+          className="btn cta-btn add-btn"
+          onClick={() => setEditModal(prevModal => ({ ...prevModal, isOpen: true }))}
+        >
+          Add New FAQ
+        </button>
         : null}
       <Modal
         isOpen={editModal.isOpen}
