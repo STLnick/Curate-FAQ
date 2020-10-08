@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Header } from './components';
+import { Footer, Header } from './components';
 import { FAQ, Login, NotFound } from './views';
 import { UserContext } from './UserContext';
 
@@ -26,6 +26,7 @@ const App = () => {
             </Route>
           </Switch>
         </div>
+        <Footer />
       </UserContext.Provider>
     </>
   )
