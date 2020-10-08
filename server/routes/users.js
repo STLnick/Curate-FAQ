@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addUser, deleteUser, getUsers, updateUser } from '../db'
+import { addUser, deleteUser, findUser, getUsers, updateUser } from '../db'
 
 const router = Router();
 
@@ -30,6 +30,14 @@ router.patch('/:_id', async (req, res) => {
 router.delete('/', async (req, res) => {
   try {
     res.status(204).json(await deleteUser(req.body));
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+router.post('/login', async (req, res) => {
+  try {
+    res.status(201).json(await findUser(req.body));
   } catch (err) {
     res.status(500).send(err);
   }

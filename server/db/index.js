@@ -20,6 +20,15 @@ export const deleteUser = async ({ _id }) => {
   }
 }
 
+export const findUser = async (userInfo) => {
+  try {
+    return await client.db('curate').collection('users')
+      .findOne(userInfo);
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
 export const getUsers = async () => {
   try {
     return await client.db('curate').collection('users')
