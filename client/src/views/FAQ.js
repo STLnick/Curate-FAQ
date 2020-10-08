@@ -180,42 +180,8 @@ export const FAQ = () => {
           <button className="btn cta-btn" type="submit">Add</button>
         </form>
       </Modal>
-      <Modal
-        isOpen={editModal.isOpen}
-        onRequestClose={() => setEditModal(prevModal => ({ ...prevModal, isOpen: false }))}
-        style={{
-          content: {
-            height: '375px',
-            left: '50%',
-            top: '25%',
-            transform: 'translate(-50%, -50%)',
-            width: '250px',
-          }
-        }}
-      >
-        <form
-          className="modal-form flex flex--column flex--align-center flex--justify-around"
-          onSubmit={(e) => handleEditFaqSubmit(e)}
-        >
-          {editModal.error ? <p className="error">{editModal.error}</p> : null}
-          <label htmlFor="question">Question</label>
-          <textarea
-            className="input edit-textarea"
-            defaultValue={editModal.currentItemToEdit?.question}
-            id="question"
-            type="text"
-          />
-          <label htmlFor="answer">Answer</label>
-          <textarea
-            className="input edit-textarea"
-            defaultValue={editModal.currentItemToEdit?.answer}
-            id="answer"
-            type="text"
-          />
-          <button className="btn outline-btn primary-fill" type="button" onClick={() => setEditModal(prevModal => ({ ...prevModal, isOpen: false }))}>Cancel</button>
-          <button className="btn cta-btn" type="submit">Confirm Changes</button>
-        </form>
-      </Modal>
+      {/* <AddModal modal={addModal} closeModal={closeModal} handleConfirm={handleAddFaqSubmit} /> */}
+      <EditModal modal={editModal} closeModal={closeModal} handleConfirm={handleEditFaqSubmit} />
       <DeleteModal modal={deleteModal} closeModal={closeModal} handleConfirm={handleDeleteConfirm} />
       <div>
         {renderFaqs()}
