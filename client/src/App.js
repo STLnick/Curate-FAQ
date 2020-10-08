@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { Footer, Header } from './components';
-import { FAQ, Login, NotFound } from './views';
+import { FAQ, Login, NotFound, Register } from './views';
 import { UserContext } from './UserContext';
 
 const App = () => {
@@ -17,6 +17,9 @@ const App = () => {
           <Switch>
             <Route exact path="/">
               <Login />
+            </Route>
+            <Route exact path="/register">
+              <Register />
             </Route>
             <Route exact path="/faq">
               <FAQ />
