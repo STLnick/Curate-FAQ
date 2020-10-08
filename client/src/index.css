@@ -38,7 +38,8 @@ code {
   padding: 1rem;
 }
 
-.top-nav-right a {
+.top-nav-right a,
+.top-nav-right button {
   margin-left: 2rem;
 }
 
