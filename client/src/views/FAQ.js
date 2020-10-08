@@ -44,6 +44,8 @@ export const FAQ = () => {
       case 'edit':
         setEditModal(prevModal => ({ ...prevModal, isOpen: false }))
         break;
+      default:
+        console.log('Something went wrong!');
     }
   }
 
