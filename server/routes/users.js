@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getUsers } from '../db'
+import { addUser, getUsers } from '../db'
 
 const router = Router();
 
@@ -11,7 +11,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.post('/', () => {//add a user});
+router.post('/', async (req, res) => {
+  try {
+    res.status(201).json(await addUser(req.body));
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 //   router.patch('/', () => {//update a user});
 
