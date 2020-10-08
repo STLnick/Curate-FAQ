@@ -80,6 +80,11 @@ code {
   font-weight: 500;
 }
 
+.not-found-text {
+  color: red;
+  font-size: 2.4rem;
+}
+
 /* * Reusable Classes * */
 
 .heading {
