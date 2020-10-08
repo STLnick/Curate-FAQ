@@ -49,3 +49,16 @@ Points: 5
 
 1. Improve Styling
 2. Animations
+
+**What I'd Like To Improve**
+
+User Authentication 
+- AuthorizationCould use Firebase to not store email/pass in my database
+- Encrypt passwords if keeping in database
+- Create an Admin status so both Admins and End Users could login but only Admins see the Add, Edit, Delete buttons
+
+Backend Interfacing
+- Use GraphQL - I've been wanting to try this. Might be too simple an app to truly see the benefit of GraphQL but would like the experience of setting it up with Apollo in a React App.
+
+Animations
+- Use Framer-Motion for some basic animations
