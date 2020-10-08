@@ -76,6 +76,35 @@ export const FAQ = () => {
     }
   }
 
+  const handleEditClick = (e) => {
+    const targetId = e.target.closest('button').dataset.id;
+    const clickedItemToEdit = faqs.find(faq => faq._id === targetId);
+    setEditModal({ isOpen: true, currentItemToEdit: clickedItemToEdit });
+  }
+
+  const handleEditFaqSubmit = async (e) => {
+    e.preventDefault();
+
+    // Get info from fields
+    const updatedFaq = Array.from(e.target.elements).filter(el => el.id).reduce((acc, el) => {
+      acc[el.id] = el.value;
+      return acc;
+    }, {})
+    // Attach MongoDB _id
+    updatedFaq._id = editModal.currentItemToEdit._id;
+
+    try {
+      // Update in database
+      await faqAPI.update(updatedFaq);
+      // Update in state
+      setFaqs(prevFaqs => prevFaqs.map(faq => faq._id === updatedFaq._id ? updatedFaq : faq))
+      // Close Modal
+      setEditModal(prevModal => ({ ...prevModal, error: '', isOpen: false }))
+    } catch (err) {
+      setEditModal(prevModal => ({ ...prevModal, error: err }))
+    }
+  }
+
   const renderFaqs = () => {
     return faqs.map(({ _id, answer, question }, i) => <div key={i} className="faqs flex flex--align-center">
       <FAQRow answer={answer} question={question} />
@@ -137,16 +166,40 @@ export const FAQ = () => {
           <button className="btn cta-btn" type="submit">Add</button>
         </form>
       </Modal>
+      <Modal
         isOpen={editModal.isOpen}
         onRequestClose={() => setEditModal(prevModal => ({ ...prevModal, isOpen: false }))}
+        style={{
+          content: {
+            height: '375px',
+            left: '50%',
+            top: '25%',
+            transform: 'translate(-50%, -50%)',
+            width: '250px',
+          }
+        }}
       >
-        <form onSubmit={(e) => handleAddFaq(e)}>
+        <form
+          className="modal-form flex flex--column flex--align-center flex--justify-around"
+          onSubmit={(e) => handleEditFaqSubmit(e)}
+        >
           {editModal.error ? <p className="error">{editModal.error}</p> : null}
           <label htmlFor="question">Question</label>
-          <input className="input" id="question" type="text" />
+          <textarea
+            className="input edit-textarea"
+            defaultValue={editModal.currentItemToEdit?.question}
+            id="question"
+            type="text"
+          />
           <label htmlFor="answer">Answer</label>
-          <input className="input" id="answer" type="text" />
-          <button className="btn cta-btn" type="submit">Add</button>
+          <textarea
+            className="input edit-textarea"
+            defaultValue={editModal.currentItemToEdit?.answer}
+            id="answer"
+            type="text"
+          />
+          <button className="btn outline-btn primary-fill" type="button" onClick={() => setEditModal(prevModal => ({ ...prevModal, isOpen: false }))}>Cancel</button>
+          <button className="btn cta-btn" type="submit">Confirm Changes</button>
         </form>
       </Modal>
       <Modal
