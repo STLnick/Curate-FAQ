@@ -6,20 +6,22 @@ import { FAQ, Login, NotFound } from './views';
 
 const App = () => {
   return (
-    <div className="container">
+    <>
       <Header />
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route exact path="/faq">
-          <FAQ />
-        </Route>
-        <Route>
-          <NotFound />
-        </Route>
-      </Switch>
-    </div>
+      <div className="container flex flex--column flex--align-center flex--justify-center">
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route exact path="/faq">
+            <FAQ />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+      </div>
+    </>
   )
 }
 

@@ -1,5 +1,20 @@
-body {
+:root {
+  --primary: rgb(27, 96, 146);
+  --primary-dark: rgb(18, 40, 85);
+  --secondary: rgb(248, 236, 59);
+
+}
+
+* {
   margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -15,6 +30,51 @@ code {
 .container {
   width: 100vw;
   min-height: 100vh;
+}
+
+.top-nav {
+  background-color: var(--primary);
+  padding: 1rem;
+}
+
+.title {
+  color: white;
+}
+
+/* * Reusable Classes * */
+
+.btn {
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  transition: all 0.4s ease-in-out;
+}
+
+.cta-btn {
+  background-color: var(--primary);
+  color: white;
+}
+
+.cta-btn:focus,
+.cta-btn:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.outline-btn {
+  background-color: white;
+  color: var(--primary);
+}
+
+.primary-fill:focus,
+.primary-fill:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.secondary-fill:focus,
+.secondary-fill:hover {
+  background-color: var(--secondary);
 }
 
 /* * Flex * */
