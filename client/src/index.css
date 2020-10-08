@@ -53,6 +53,15 @@ code {
   border-bottom-color: white;
 }
 
+.dark-text-link {
+  color: var(--primary);
+}
+
+.dark-text-link:focus,
+.dark-text-link:hover {
+  border-bottom-color: var(--primary);
+}
+
 .title {
   color: white;
 }
@@ -150,6 +159,10 @@ footer a:hover {
   font-size: 4rem;
   font-weight: 200;
   margin-bottom: 2rem;
+}
+
+.sm-text {
+  font-size: 0.8rem;
 }
 
 .med-text {
