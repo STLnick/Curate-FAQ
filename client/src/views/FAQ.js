@@ -15,13 +15,15 @@ export const FAQ = () => {
   }, []);
 
   const renderFaqs = () => {
-    return faqs.map(({ answer, question }) => <FAQRow answer={answer} question={question} />)
+    return faqs.map(({ answer, question }, i) => <FAQRow key={i} answer={answer} question={question} />)
   }
 
   return (
-    <div>
+    <>
       <h3 className="heading">FAQs</h3>
-      {renderFaqs()}
-    </div>
+      <div>
+        {renderFaqs()}
+      </div>
+    </>
   )
 }
