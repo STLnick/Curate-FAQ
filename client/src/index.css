@@ -20,6 +20,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 10px;
 }
 
 code {
@@ -41,11 +42,52 @@ code {
   color: white;
 }
 
+.login-form {
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.login-form * {
+  margin-bottom: 2rem;
+}
+
 /* * Reusable Classes * */
+
+.heading {
+  color: var(--primary);
+  border-bottom: 2px solid #aaa;
+  font-size: 4rem;
+  font-weight: 200;
+  margin-bottom: 2rem;
+}
+
+.med-text {
+  font-size: 1.2rem;
+}
+
+.lg-text {
+  font-size: 1.6rem;
+}
+
+.input {
+  border: 2px solid #eee;
+  border-radius: 10px;
+  outline: none;
+  padding: 0.75rem 1.25rem;
+  transition: all 0.4s ease-in-out;
+}
+
+.input:focus,
+.input:hover {
+  border: 2px solid var(--primary);
+}
 
 .btn {
   border: 1px solid var(--primary);
   border-radius: 10px;
+  font-size: 1.2rem;
   padding: 0.5rem 1rem;
   transition: all 0.4s ease-in-out;
 }
