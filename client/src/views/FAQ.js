@@ -26,6 +26,33 @@ export const FAQ = () => {
     })()
   }, []);
 
+  const handleAddFaq = async (e) => {
+    e.preventDefault();
+
+    // Get info from fields
+    const newFaq = Array.from(e.target.elements).filter(el => el.id).reduce((acc, el) => {
+      acc[el.id] = el.value;
+      return acc;
+    }, {})
+
+    // Add FAQ to database
+    try {
+      const response = await faqAPI.create(newFaq);
+      // Attach MongoDB _id to FAQ object
+      newFaq._id = response.insertedId;
+
+      // Add FAQ to local state
+      setFaqs(prevFaqs => [...prevFaqs, newFaq]);
+
+      // Close Modal
+      setEditModal(prevModal => ({ ...prevModal, isOpen: false }))
+    } catch (err) {
+      setEditModal(prevModal => ({ ...prevModal, error: err }));
+    }
+
+
+  }
+
   const renderFaqs = () => {
     return faqs.map(({ answer, question }, i) => <FAQRow key={i} answer={answer} question={question} />)
   }
