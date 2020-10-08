@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from 'UserContext';
 
 import api from 'api';
@@ -36,12 +36,14 @@ export const Login = () => {
   return (
     <>
       <h2 className="heading">Login</h2>
-      <form className="login-form flex flex--column" onSubmit={(e) => handleLogin(e)}>
+      <form className="login-form flex flex--column flex--align-center" onSubmit={(e) => handleLogin(e)}>
         <label className="med-text" htmlFor="email">Email</label>
         <input className="input" id="email" type="email" />
         <label className="med-text" htmlFor="password">Password</label>
         <input className="input" id="password" type="password" />
         <button className="btn cta-btn" type="submit">Login</button>
+        <span className="sm-text">Not a member?</span>
+        <Link className="sm-text text-link dark-text-link" to="/register">Register</Link>
       </form>
       <span className="error">{error}</span>
     </>
