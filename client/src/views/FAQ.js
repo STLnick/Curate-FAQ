@@ -1,12 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Modal from 'react-modal';
 
 import { FAQRow } from '../components';
+import { UserContext } from 'UserContext';
 import api from 'api';
 
 const faqAPI = api('faqs');
 
+Modal.setAppElement('#root')
+
 export const FAQ = () => {
+  const [editModal, setEditModal] = useState({
+    isOpen: false,
+    currentItemToEdit: {},
+    error: ''
+  })
   const [faqs, setFaqs] = useState([]);
+
+  const { user } = useContext(UserContext);
+
 
   useEffect(() => {
     (async () => {
@@ -21,6 +33,22 @@ export const FAQ = () => {
   return (
     <>
       <h3 className="heading">FAQs</h3>
+      {user
+        ? <button onClick={() => setEditModal(prevModal => ({ ...prevModal, isOpen: true }))}>Add New FAQ</button>
+        : null}
+      <Modal
+        isOpen={editModal.isOpen}
+        onRequestClose={() => setEditModal(prevModal => ({ ...prevModal, isOpen: false }))}
+      >
+        <form onSubmit={(e) => handleAddFaq(e)}>
+          {editModal.error ? <p className="error">{editModal.error}</p> : null}
+          <label htmlFor="question">Question</label>
+          <input className="input" id="question" type="text" />
+          <label htmlFor="answer">Answer</label>
+          <input className="input" id="answer" type="text" />
+          <button className="btn cta-btn" type="submit">Add</button>
+        </form>
+      </Modal>
       <div>
         {renderFaqs()}
       </div>
