@@ -23,7 +23,10 @@ export const Header = () => {
           >
             Logout
           </button>
-          : <Link className="btn outline-btn secondary-fill" to="/">Login</Link>}
+          : <>
+            <Link className="med-text text-link" to="/">Login</Link>
+            <Link className="btn outline-btn secondary-fill" to="/register">Sign Up</Link>
+          </>}
       </div>
     </div>
   )
