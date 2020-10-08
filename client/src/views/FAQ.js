@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Modal from 'react-modal';
 
 import { AddModal, DeleteModal, EditModal, FAQRow } from '../components';
 import { UserContext } from 'UserContext';
 import api from 'api';
 
 const faqAPI = api('faqs');
-
-Modal.setAppElement('#root')
 
 export const FAQ = () => {
   const [addModal, setAddModal] = useState({
@@ -154,35 +151,9 @@ export const FAQ = () => {
           Add New FAQ
         </button>
         : null}
-      <Modal
-        isOpen={addModal.isOpen}
-        onRequestClose={() => setAddModal(prevModal => ({ ...prevModal, isOpen: false }))}
-        style={{
-          content: {
-            height: '275px',
-            left: '50%',
-            top: '25%',
-            transform: 'translate(-50%, -50%)',
-            width: '200px',
-          }
-        }}
-      >
-        <form
-          className="modal-form flex flex--column flex--align-center flex--justify-around"
-          onSubmit={(e) => handleAddFaqSubmit(e)}
-        >
-          {addModal.error ? <p className="error">{addModal.error}</p> : null}
-          <label htmlFor="question">Question</label>
-          <textarea className="input edit-textarea" id="question" type="text" />
-          <label htmlFor="answer">Answer</label>
-          <textarea className="input edit-textarea" id="answer" type="text" />
-          <button type="button btn outline-btn" onClick={() => setAddModal(prevModal => ({ ...prevModal, isOpen: false }))}>Cancel</button>
-          <button className="btn cta-btn" type="submit">Add</button>
-        </form>
-      </Modal>
-      {/* <AddModal modal={addModal} closeModal={closeModal} handleConfirm={handleAddFaqSubmit} /> */}
-      <EditModal modal={editModal} closeModal={closeModal} handleConfirm={handleEditFaqSubmit} />
-      <DeleteModal modal={deleteModal} closeModal={closeModal} handleConfirm={handleDeleteConfirm} />
+      <AddModal modal={addModal} closeModal={closeModal} handleConfirm={(e) => handleAddFaqSubmit(e)} />
+      <EditModal modal={editModal} closeModal={closeModal} handleConfirm={(e) => handleEditFaqSubmit(e)} />
+      <DeleteModal modal={deleteModal} closeModal={closeModal} handleConfirm={(e) => handleDeleteConfirm(e)} />
       <div>
         {renderFaqs()}
       </div>
