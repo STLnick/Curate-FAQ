@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:5000'
+const baseUrl = 'https://curatefaq.herokuapp.com'
 
 export default (resource) => ({
   // Add a new FAQ or User
