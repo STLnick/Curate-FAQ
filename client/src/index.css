@@ -112,6 +112,29 @@ code {
 .edit-textarea {
   resize: none;
 }
+
+footer {
+  background-color: var(--primary);
+  color: white;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+footer span {
+  font-weight: 500;
+}
+
+footer a {
+  border-bottom: 2px solid transparent;
+  color: var(--secondary);
+  transition: border-bottom 0.4s ease-in-out;
+}
+
+footer a:focus,
+footer a:hover {
+  border-bottom: 2px solid var(--secondary);
+}
+
 /* * Reusable Classes * */
 
 .error {
