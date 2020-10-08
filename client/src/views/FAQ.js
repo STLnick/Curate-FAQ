@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AddModal, DeleteModal, EditModal, FAQRow } from '../components';
 import { UserContext } from 'UserContext';
 import api from 'api';
+import utils from 'utils';
 
 const faqAPI = api('faqs');
 
@@ -50,10 +51,7 @@ export const FAQ = () => {
     e.preventDefault();
 
     // Get info from fields
-    const newFaq = Array.from(e.target.elements).filter(el => el.id).reduce((acc, el) => {
-      acc[el.id] = el.value;
-      return acc;
-    }, {})
+    const newFaq = utils.createObjectFromFields(e.target.elements);
 
     try {
       // Add FAQ to database
@@ -97,10 +95,7 @@ export const FAQ = () => {
     e.preventDefault();
 
     // Get info from fields
-    const updatedFaq = Array.from(e.target.elements).filter(el => el.id).reduce((acc, el) => {
-      acc[el.id] = el.value;
-      return acc;
-    }, {})
+    const updatedFaq = utils.createObjectFromFields(e.target.elements)
     // Attach MongoDB _id
     updatedFaq._id = editModal.currentItemToEdit._id;
 

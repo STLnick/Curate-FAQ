@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { UserContext } from 'UserContext';
 
 import api from 'api';
+import utils from 'utils';
 
 const userAPI = api('users');
 
@@ -15,10 +16,7 @@ export const Login = () => {
     e.preventDefault();
 
     // Get info from fields
-    const userInfo = Array.from(e.target.elements).filter(el => el.id).reduce((acc, el) => {
-      acc[el.id] = el.value;
-      return acc;
-    }, {})
+    const userInfo = utils.createObjectFromFields(e.target.elements)
 
     // Try to find in database
     const response = await userAPI.login(userInfo);
