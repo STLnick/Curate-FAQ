@@ -45,7 +45,7 @@ export default (resource) => ({
 
   // Update a User or FAQ
   async update(payload) {
-    const { _id, uid, ...propsToUpdate } = payload
+    const { _id, ...propsToUpdate } = payload
     await fetch(`${baseUrl}/${resource}/${_id}`, {
       method: 'PATCH',
       headers: {
