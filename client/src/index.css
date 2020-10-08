@@ -38,6 +38,21 @@ code {
   padding: 1rem;
 }
 
+.top-nav-right a {
+  margin-left: 2rem;
+}
+
+.text-link {
+  border-bottom: 2px solid transparent;
+  color: white;
+  transition: all 0.4s ease-in-out;
+}
+
+.text-link:focus,
+.text-link:hover {
+  border-bottom-color: white;
+}
+
 .title {
   color: white;
 }
