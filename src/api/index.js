@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 
 const baseUrl = 'http://localhost:80/faq-backend'
 
@@ -11,13 +12,13 @@ export default (resource) => ({
 
   // Delete a FAQ or User
   async delete(payload) {
-    await fetch(`${baseUrl}/${resource}`, {
+    const options = {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: qs.stringify(payload),
+      url: `${baseUrl}/${resource}/delete.php`,
+    };
+    return await axios(options);
   },
 
   // Get all FAQs or Users

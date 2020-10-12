@@ -80,9 +80,9 @@ export const FAQ = () => {
   const handleDeleteConfirm = async () => {
     try {
       // Delete from db
-      await faqAPI.delete({ _id: deleteModal.currentIdToDelete });
+      await faqAPI.delete({ id: deleteModal.currentIdToDelete });
       // Remove from state
-      setFaqs(prevFaqs => prevFaqs.filter(faq => faq._id !== deleteModal.currentIdToDelete))
+      setFaqs(prevFaqs => prevFaqs.filter(faq => faq.id !== deleteModal.currentIdToDelete))
       // Close Modal
       setDeleteModal(prevModal => ({ ...prevModal, error: '', isOpen: false }))
     } catch (err) {
