@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-const baseUrl = 'http://localhost:80/faq-backend'
+const baseUrl = 'http://localhost:80/faq-php/faq-backend'
 
 export default (resource) => ({
   // Add a new FAQ or User
