@@ -1,16 +1,12 @@
+import axios from 'axios'
+
 const baseUrl = 'http://localhost:80/faq-backend'
 
 export default (resource) => ({
   // Add a new FAQ or User
   async create(payload) {
-    const res = await fetch(`${baseUrl}/${resource}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-    return await res.json()
+    return await axios.post(`${baseUrl}/${resource}/create.php`, payload)
+      .then(res => res.data)
   },
 
   // Delete a FAQ or User

@@ -18,12 +18,16 @@ export const Register = () => {
     // Get info from fields
     const userInfo = utils.createObjectFromFields(e.target.elements);
 
+    // Using new FormData() for SQL
+    let formData = new FormData();
+    formData.append('email', userInfo.email)
+    formData.append('password', userInfo.password)
+
     try {
       // Insert in database
-      const response = await userAPI.create(userInfo);
+      const response = await userAPI.create(formData);
       // If successful, setUser and redirect to /faq else display error
-      userInfo._id = response.insertedId;
-      setUser(userInfo);
+      setUser(response);
       history.push('/faq')
     } catch (err) {
       setError(err);
