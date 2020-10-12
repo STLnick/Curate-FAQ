@@ -92,7 +92,7 @@ export const FAQ = () => {
 
   const handleEditClick = (e) => {
     const targetId = e.target.closest('button').dataset.id;
-    const clickedItemToEdit = faqs.find(faq => faq._id === targetId);
+    const clickedItemToEdit = faqs.find(faq => faq.id === targetId);
     setEditModal({ isOpen: true, currentItemToEdit: clickedItemToEdit });
   }
 
@@ -101,14 +101,14 @@ export const FAQ = () => {
 
     // Get info from fields
     const updatedFaq = utils.createObjectFromFields(e.target.elements)
-    // Attach MongoDB _id
-    updatedFaq._id = editModal.currentItemToEdit._id;
+    // Add ID for database
+    updatedFaq.id = editModal.currentItemToEdit.id
 
     try {
       // Update in database
       await faqAPI.update(updatedFaq);
       // Update in state
-      setFaqs(prevFaqs => prevFaqs.map(faq => faq._id === updatedFaq._id ? updatedFaq : faq))
+      setFaqs(prevFaqs => prevFaqs.map(faq => faq.id === updatedFaq.id ? updatedFaq : faq))
       // Close Modal
       setEditModal(prevModal => ({ ...prevModal, error: '', isOpen: false }))
     } catch (err) {

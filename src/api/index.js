@@ -36,14 +36,13 @@ export default (resource) => ({
 
   // Update a User or FAQ
   async update(payload) {
-    const { _id, ...propsToUpdate } = payload
-    await fetch(`${baseUrl}/${resource}/${_id}`, {
+    const options = {
       method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(propsToUpdate)
-    })
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: qs.stringify(payload),
+      url: `${baseUrl}/${resource}/update.php`,
+    };
+    return await axios(options);
   },
 
 });
