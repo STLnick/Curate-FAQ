@@ -28,14 +28,8 @@ export default (resource) => ({
 
   // Login a User - not used for FAQs
   async login(payload) {
-    const res = await fetch(`${baseUrl}/${resource}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-    return await res.json();
+    return await axios.post(`${baseUrl}/${resource}/login.php`, payload)
+      .then(res => res.data)
   }
   ,
 

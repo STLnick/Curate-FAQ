@@ -18,9 +18,14 @@ export const Login = () => {
     // Get info from fields
     const userInfo = utils.createObjectFromFields(e.target.elements)
 
+    // Using new FormData() for SQL
+    let formData = new FormData();
+    formData.append('email', userInfo.email)
+    formData.append('password', userInfo.password)
+
     try {
       // Try to find in database
-      const response = await userAPI.login(userInfo);
+      const response = await userAPI.login(formData);
       // If successful, setUser and redirect to /faq else display error
       if (response) {
         setUser(response);
