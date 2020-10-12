@@ -54,6 +54,7 @@ export const FAQ = () => {
 
     // Get info from fields
     const newFaq = utils.createObjectFromFields(e.target.elements);
+    // Using new FormData() for PHP
 
     try {
       // Add FAQ to database

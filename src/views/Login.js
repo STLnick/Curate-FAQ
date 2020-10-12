@@ -18,7 +18,7 @@ export const Login = () => {
     // Get info from fields
     const userInfo = utils.createObjectFromFields(e.target.elements)
 
-    // Using new FormData() for SQL
+    // Using new FormData() for PHP
     let formData = new FormData();
     formData.append('email', userInfo.email)
     formData.append('password', userInfo.password)
