@@ -55,14 +55,16 @@ export const FAQ = () => {
     // Get info from fields
     const newFaq = utils.createObjectFromFields(e.target.elements);
     // Using new FormData() for PHP
+    let formData = new FormData();
+    formData.append('question', newFaq.question)
+    formData.append('answer', newFaq.answer)
 
     try {
       // Add FAQ to database
-      const response = await faqAPI.create(newFaq);
-      // Attach MongoDB _id to FAQ object
-      newFaq._id = response.insertedId;
+      const response = await faqAPI.create(formData);
+      console.log('response: ', response);
       // Add FAQ to local state
-      setFaqs(prevFaqs => [...prevFaqs, newFaq]);
+      setFaqs(prevFaqs => [...prevFaqs, response]);
       // Close Modal
       setAddModal(prevModal => ({ ...prevModal, error: '', isOpen: false }));
     } catch (err) {
