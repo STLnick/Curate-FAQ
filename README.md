@@ -1,68 +1,80 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Curate-FAQ
 
-## Available Scripts
+### Tech Stack (for this branch!)
 
-In the project directory, you can run:
+React, XAMPP, SQL, PHP
 
-### `yarn start`
+## How To Run Project
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+....
+1. Clone project onto your machine (specifically this **php** branch)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+2. Move (or clone directly in step 1) into your local `XAMPP/htdocs` directory
 
-### `yarn test`
+3. Run `yarn` or `npm i` to install dependencies
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Start XAMPP
+  - **NOTE**: The project is setup to interact with XAMPP on _port 80_ by default. If you've set it up to run on a different port then you will need to change the `baseUrl` variable inside of `/src/api/index.js` from `http://localhost:80/faq-php/faq-backend` to `http://localhost:<YOUR_PORT>/faq-php/faq-backend` replacing '<YOUR_PORT>' with the actual port you have configured.
 
-### `yarn build`
+4. Run `yarn start` or `npm start` depending on how you installed dependencies
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. Play around!
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## The User Story
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+As an Administrator User I’d like the ability to manage questions
+and answers and have them displayed to end users on a FAQ
+page so that I can answer commonly asked questions.
 
-### `yarn eject`
+Acceptance Criteria
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Admins should be able to create, update and delete questions and answers.
+2. End Users should be able to view these questions and answers.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Story Points for this Story**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Time: **2pts** Estimate 5hrs
+- Effort: **2pts** Minimal - moderate
+- Risk: **1pt** Little to none - this is the whole app. We can't break nothing! 
+In a production environment it would still be relatively low risk. Biggest risk factor would be ensure we create, update and delete info from the database properly.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Points: 5
 
-## Learn More
+**Tasks**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+*Required for Minimum Viable Product*
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Create Database
+    - In MongoDB Atlas create a new database for FAQs and Users (Admins)
+    - Connect to Compass for easy access on machine
+2. Create backend routes
+    - `/users`
+    - `/faqs`
+3. Create database interaction functions for backend
+    - create, read, update, delete for `users` and `faqs`
+4. Create display for Question & Answers
+    - A simple list will do to start
+5. Create a Login for an Admin to use
+    - Simple user/pass form checked against database for authentication
+        - NOTE: Not implementing full security checks here for simple app
+6. ADD, EDIT, and DELETE buttons/icons for Admins to use
+    - If Admin logged in, display these items
+    - Implement functionality of interaction with database
 
-### Code Splitting
+*Additional Tasks*
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+1. Improve Styling
+2. Animations
 
-### Analyzing the Bundle Size
+**What I'd Like To Improve**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+User Authentication 
+- AuthorizationCould use Firebase to not store email/pass in my database
+- Encrypt passwords if keeping in database
+- Create an Admin status so both Admins and End Users could login but only Admins see the Add, Edit, Delete buttons
 
-### Making a Progressive Web App
+Backend Interfacing
+- Use GraphQL - I've been wanting to try this. Might be too simple an app to truly see the benefit of GraphQL but would like the experience of setting it up with Apollo in a React App.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Animations
+- Use Framer-Motion for some basic animations
