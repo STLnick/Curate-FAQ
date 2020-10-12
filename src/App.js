@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useMemo, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-function App() {
+import { Footer, Header } from './components';
+import { FAQ, Login, NotFound, Register } from './views';
+import { UserContext } from './UserContext';
+
+const App = () => {
+  const [user, setUser] = useState(null);
+  const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <UserContext.Provider value={providerValue}>
+        <Header />
+        <div className="container flex flex--column flex--align-center flex--justify-center">
+          <Switch>
+            <Route exact path="/">
+              <Login />
+            </Route>
+            <Route exact path="/register">
+              <Register />
+            </Route>
+            <Route exact path="/faq">
+              <FAQ />
+            </Route>
+            <Route>
+              <NotFound />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
+      </UserContext.Provider>
+    </>
+  )
 }
 
 export default App;
