@@ -22,8 +22,8 @@ export default (resource) => ({
 
   // Get all FAQs or Users
   async show() {
-    const res = await fetch(`${baseUrl}/${resource}`)
-    return await res.json()
+    return await axios.get(`${baseUrl}/${resource}/read.php`)
+      .then(res => res.data)
   },
 
   // Login a User - not used for FAQs
