@@ -6,7 +6,6 @@ React, XAMPP, SQL, PHP
 
 ## How To Run Project
 
-....
 1. Clone project onto your machine (specifically this **php** branch)
 
 2. Move (or clone directly in step 1) into your local `XAMPP/htdocs` directory
